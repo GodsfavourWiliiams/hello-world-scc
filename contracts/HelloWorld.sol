@@ -4,19 +4,22 @@ pragma solidity >=0.7.3;
 
 contract HelloWorld {
 
-   event UpdatedMessages(string oldStr, string newStr);
 
-   string public message;
+    //initial state
+    string message;
+    
+    //initiates the contract by setting message as hello world
+    constructor(){
+        message = "Hello World";
+    }
 
-   constructor(string memory initMessage) {
-
-      message = initMessage;
-   }
-
-   // A public function that accepts a string argument and updates the `message` storage variable.
-   function update(string memory newMessage) public {
-      string memory oldMsg = message;
-      message = newMessage;
-      emit UpdatedMessages(oldMsg, newMessage);
-   }
+    //this fxn gets the value of the string message and returns it
+    function getMessage() public view returns(string memory ){
+        return message;
+    }
+    
+    //this fxn sets the state of message with the new input
+     function setMessage(string memory _message) public{
+         message = _message;
+    }
 }
